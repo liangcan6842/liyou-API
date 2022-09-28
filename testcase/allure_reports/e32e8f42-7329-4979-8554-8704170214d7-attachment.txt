@@ -1,0 +1,1 @@
+{'data': {'list': [{'id': 1, 'title': '南平市文化和旅游局上海杭州南昌推介会服务类采购项目结果公告(包1)', 'pub_date': '2019-08-20', 'province_name': '福建', 'channel_name': '成交公告', 'classify_id': 1, 'order_number': 'TENDER2019082921122151809220', 'b_id': 'd77c6537ba7b83fb006de4a0734739bd', 'create_time': 1657762090}], 'count': 1}, 'code': 200, 'msg': 'ok'}

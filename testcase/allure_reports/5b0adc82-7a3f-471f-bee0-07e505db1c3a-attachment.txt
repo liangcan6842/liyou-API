@@ -1,0 +1,1 @@
+{'data': {'list': [{'id': 19, 'uid': 1, 'contacts': '测试', 'contact_number': '17623400167', 'province_id': 110000, 'province_name': '北京市', 'city_id': 110100, 'city_name': '北京市', 'area_id': 110101, 'area_name': '东城区', 'detailed_address': 'xxx广场24', 'id_default': '1', 'create_time': 1662707127, 'update_time': 1662707127}], 'count': 1}, 'code': 200, 'msg': 'ok'}

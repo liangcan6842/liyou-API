@@ -1,0 +1,1 @@
+{'msg': 'file:D:\\www\\liyou\\vendor\\guzzlehttp\\guzzle\\src\\Handler\\CurlFactory.php-Line201-MSG:cURL error 60: SSL certificate problem: unable to get local issuer certificate (see https://curl.haxx.se/libcurl/c/libcurl-errors.html)', 'code': -999}

@@ -1,0 +1,1 @@
+{'data': {'SetMeal': [{'id': 1, 'set_meal_name': '月度会员', 'original_price': 25, 'price': 18}, {'id': 2, 'set_meal_name': '季度会员', 'original_price': 75, 'price': 50}, {'id': 3, 'set_meal_name': '年度会员', 'original_price': 300, 'price': 188}], 'vipContent': 'dada123'}, 'code': 200, 'msg': 'ok'}
