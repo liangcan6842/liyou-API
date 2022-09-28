@@ -9,132 +9,90 @@ MINOR = 'minor'　　    次要缺陷(界面错误与ui需求不符)
 TRIVIAL = 'trivial'　　轻微缺陷(必须项无提示，或者提示不规范)　
 标记用例等级：@allure.severity(allure.severity_level.TRIVIAL)"""
 @allure.feature("小程序用户端")
-@allure.story("公共模块测试用例")
-@allure.description("启动页")
-@allure.severity(allure.severity_level.MINOR)
-def test_1_setup_page():
-    """启动页"""
-    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
-    headers = {
-        "Content-Type": "application/json;charset=utf8",
-        # "Authorization": get_token_fixture
-    }
-    url = URL + "/h5/user.Index/index"
-    res = requests.post(url=url, headers=headers).text
-    res = json.loads(res)
-    print(res)
-    assert res["code"] == 200
-@allure.feature("小程序用户端")
-@allure.story("公共模块测试用例")
-@allure.description("搜索历史记录")
+@allure.story("售后订单管理模块测试用例")
+@allure.description("退货退款同意后填写物流单号")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_2_search_story_record():
-    """搜索历史纪录"""
+def test_1_fill_logistics_code():
+    """退货退款同意后填写物流单号"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         # "Authorization": get_token_fixture
     }
     data = {
-        "uid":"1", #用户id
-        "type":"1", #1.商品搜索 2.企查查搜索 3.店铺搜索
-        "page":"1",
-        "pagesize":"10" #每页展示数量
+        "id":"22", #售后订单id
+        "express":"SF20214612123", #物流单号
+        "express_name":"顺丰快递" #快递公司名
     }
-    url = URL + "/h5/user.search_record/getList"
-    res = requests.get(url=url, headers=headers,params=data).text
+    url = URL + "/h5/user.order_return/logistics"
+    res = requests.post(url=url, headers=headers,json=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
 @allure.feature("小程序用户端")
-@allure.story("公共模块测试用例")
-@allure.description("搜索记录删除")
+@allure.story("售后订单管理模块测试用例")
+@allure.description("售后申请")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_3_search_record_delete():
-    """搜索纪录删除"""
+def test_2_apply_after_sales():
+    """售后申请"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
+        # "Authorization": get_token_fixture
     }
     data = {
-        "id": "1",  # 记录id
-        "uid":"1", #用户id
-        "type":"1", #1.商品搜索 2.企查查搜索 3.店铺搜索
+        "oid":"2",  #订单主键id
+        "type":"2",  #1 仅退款 2.退货退款
+        "remark":"申请退货退款",  #备注
+        "refund_explain":"货物损坏", #售后原因
+        "refund_img":"231556"  #退货凭据
     }
-    url = URL + "/h5/user.search_record/del"
-    res = requests.get(url=url, headers=headers,params=data).text
+    url = URL + "/h5/user.order_return/apply"
+    res = requests.post(url=url, headers=headers,json=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
 @allure.feature("小程序用户端")
-@allure.story("公共模块测试用例")
-@allure.description("物流公司信息")
-@allure.severity(allure.severity_level.MINOR)
-def test_4_logistics_company_message():
-    """物流公司信息"""
+@allure.story("售后订单管理模块测试用例")
+@allure.description("售后列表")
+@allure.severity(allure.severity_level.NORMAL)
+def test_3_after_sales_list():
+    """售后列表"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
+        # "Authorization": get_token_fixture
     }
-    url = URL + "/h5/user.common/express"
-    res = requests.get(url=url, headers=headers).text
+    data = {
+        "uid":"1"  #用户id
+    }
+    url = URL + "/h5/user.order_return/getList"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+@allure.feature("小程序用户端")
+@allure.story("售后订单管理模块测试用例")
+@allure.description("售后详情")
+@allure.severity(allure.severity_level.MINOR)
+def test_4_after_sales_detail():
+    """售后详情"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        # "Authorization": get_token_fixture
+    }
+    data = {
+        "id":"22"  #售后订单id
+    }
+    url = URL + "/h5/user.order_return/detail"
+    res = requests.post(url=url, headers=headers,params=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
 
 if __name__ == '__main__':
     pytest.main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
