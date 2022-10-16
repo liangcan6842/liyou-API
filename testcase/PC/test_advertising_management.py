@@ -1,5 +1,5 @@
 import requests,json,pytest,allure
-URL = "http://192.168.110.167:566"
+URL = "http://liyou.api.sauou.com/"
 """@allure.severity装饰器按严重性级别来标记case　　　
 执行指定测试用例 --allure-severities blocker
 BLOCKER = 'blocker'　　阻塞缺陷(功能未实现，无法下一步)
@@ -43,9 +43,10 @@ def test_1_advertising_list():
         # "Authorization": get_token_fixture
     }
     data = {
+        "admin_id":1,
         "type": "1" #1.用户端 2.服务商端
     }
-    url = URL + "/admin/Banner/getList"
+    url = URL + "/Banner/getList"
     res = requests.post(url=url, headers=headers,params=data).text
     res = json.loads(res)
     print(res)

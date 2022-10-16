@@ -8,85 +8,85 @@ NORMAL = 'normal'　　  一般缺陷(边界情况，格式错误)
 MINOR = 'minor'　　    次要缺陷(界面错误与ui需求不符)
 TRIVIAL = 'trivial'　　轻微缺陷(必须项无提示，或者提示不规范)　
 标记用例等级：@allure.severity(allure.severity_level.TRIVIAL)"""
-@allure.feature("小程序用户端")
-@allure.story("店铺管理模块测试用例")
-@allure.description("优惠券领取")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_1_get_coupon():
-    """优惠券领取"""
-    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
-    headers = {
-        "Content-Type": "application/json;charset=utf8",
-        # "Authorization": get_token_fixture
-    }
-    data = {
-        "coupon_id": "1", #优惠券id
-        "store_id": "1", #店铺id
-        "uid": "2"
-    }
-    url = URL + "/h5/user.coupon_user/doReceive"
-    res = requests.post(url=url, headers=headers,params=data).text
-    res = json.loads(res)
-    print(res)
-    assert res["code"] == 200
-@allure.feature("小程序用户端")
-@allure.story("店铺管理模块测试用例")
-@allure.description("店铺收藏")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_2_store_collect():
-    """店铺收藏"""
-    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
-    headers = {
-        "Content-Type": "application/json;charset=utf8",
-        # "Authorization": get_token_fixture
-    }
-    data = {
-        "uid": "1",
-        "store_id": "1",
-        "status": "1" #0 取消收藏 1收藏
-    }
-    url = URL + "/h5/user.store_collect/doSave"
-    res = requests.post(url=url, headers=headers,params=data).text
-    res = json.loads(res)
-    print(res)
-    assert res["code"] == 200
-@allure.feature("小程序用户端")
-@allure.story("店铺管理模块测试用例")
-@allure.description("店铺详情")
-@allure.severity(allure.severity_level.MINOR)
-def test_3_store_detail():
-    """店铺详情"""
-    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
-    headers = {
-        "Content-Type": "application/json;charset=utf8",
-        # "Authorization": get_token_fixture
-    }
-    data = {
-        "id": "1",
-        "uid": "1"
-    }
-    url = URL + "/h5/user.Store/storeDetail"
-    res = requests.post(url=url, headers=headers,params=data).text
-    res = json.loads(res)
-    print(res)
-    assert res["code"] == 200
-@allure.feature("小程序用户端")
-@allure.story("店铺管理模块测试用例")
-@allure.description("店铺查找")
+@allure.feature("供应商后台")
+@allure.story("资金管理模块测试用例")
+@allure.description("店铺绑定uid的余额")
 @allure.severity(allure.severity_level.NORMAL)
-def test_4_store_find():
-    """店铺查找"""
+def test_1_store_uid_balance():
+    """店铺绑定uid的余额"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         # "Authorization": get_token_fixture
     }
     data = {
-        "page": "1",
-        "pagesize": "10",
-        "keywords": ""
+        "uid": "1"  # 用户id
     }
-    url = URL + "/h5/user.Store/getList"
+    url = URL + "/Supplier/Supplier/userMoney"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+@allure.feature("供应商后台")
+@allure.story("资金管理模块测试用例")
+@allure.description("提现记录")
+@allure.severity(allure.severity_level.MINOR)
+def test_2_withdrawal_record():
+    """提现记录"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        # "Authorization": get_token_fixture
+    }
+    data = {
+        "uid": "1",  # 用户id
+        "page": "1",
+        "pagesize": "10"
+    }
+    url = URL + "/Supplier/Withdraw/getList"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+@allure.feature("供应商后台")
+@allure.story("资金管理模块测试用例")
+@allure.description("流水记录")
+@allure.severity(allure.severity_level.MINOR)
+def test_3_flow_record():
+    """流水记录"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        # "Authorization": get_token_fixture
+    }
+    data = {
+        "uid": "1",  # 用户id
+        "page": "1",
+        "pagesize": "10"
+    }
+    url = URL + "/Supplier/capital_flow/getList"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+@allure.feature("供应商后台")
+@allure.story("资金管理模块测试用例")
+@allure.description("提现申请")
+@allure.severity(allure.severity_level.CRITICAL)
+def test_4_withdraw_apply():
+    """提现申请"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        # "Authorization": get_token_fixture
+    }
+    data = {
+        "uid": "1",   #用户id
+        "money": "10",   #提现金额
+        "account_name": "测试",  #姓名
+        "account": "17623400167"  #支付宝账号
+    }
+    url = URL + "/Supplier/Withdraw/apply"
     res = requests.post(url=url, headers=headers,json=data).text
     res = json.loads(res)
     print(res)
@@ -94,5 +94,25 @@ def test_4_store_find():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     pytest.main()
+
+
+
+
+
